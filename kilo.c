@@ -14,12 +14,7 @@
 #define CTRL_KEY(k) ((k) & 0x1f)
 #define KILO_VERSION "0.0.1"
 
-enum editorKey {
-  ARROW_LEFT = 1000,
-  ARROW_RIGHT,
-  ARROW_UP,
-  ARROW_DOWN
-};
+enum editorKey { ARROW_LEFT = 1000, ARROW_RIGHT, ARROW_UP, ARROW_DOWN };
 
 /*** data ***/
 
@@ -229,16 +224,24 @@ void editorRefreshScreen() {
 void editorMoveCursor(int key) {
   switch (key) {
   case ARROW_DOWN:
-    E.cy++;
+    if (E.cy != E.screenrows - 1) {
+      E.cy++;
+    }
     break;
   case ARROW_UP:
-    E.cy--;
+    if (E.cy != 0) {
+      E.cy--;
+    }
     break;
   case ARROW_LEFT:
-    E.cx--;
+    if (E.cx != 0) {
+      E.cx--;
+    }
     break;
   case ARROW_RIGHT:
-    E.cx++;
+    if (E.cx != E.screencols - 1) {
+      E.cx++;
+    }
     break;
   }
 }
